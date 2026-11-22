@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gece Okuru — Ayarlar</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="hero">
+    <img src="../icons/icon48.png" width="40" height="40" alt="">
+    <div>
+      <h1>Gece Okuru</h1>
+      <p>Tema, okuma modu ve site ayarları</p>
+    </div>
+    <label class="switch big" title="Tüm sitelerde aç/kapat">
+      <input type="checkbox" id="enabled">
+      <span class="track"><span class="thumb"></span></span>
+      <span class="switch-label">Etkin</span>
+    </label>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Genel tema</h2>
+      <div class="segmented" id="modes" role="radiogroup" aria-label="Tema modu"></div>
+      <div class="grid2" id="sliders"></div>
+    </section>
+
+    <section class="card">
+      <h2>Yazı</h2>
+      <div class="grid2">
+        <label class="field">Yazı tipi
+          <select id="fontFamily">
+            <option value="">Değiştirme</option>
+            <option value="Georgia, 'Times New Roman', serif">Georgia (serif)</option>
+            <option value="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">Sistem (sans)</option>
+            <option value="Verdana, Geneva, sans-serif">Verdana</option>
+            <option value="Verdana, Tahoma, sans-serif">Okunaklı (Verdana, Tahoma)</option>
+            <option value="ui-monospace, Menlo, Consolas, monospace">Eş aralıklı (Monospace)</option>
+            <option value="'Comic Sans MS', OpenDyslexic, cursive">Disleksi dostu</option>
+          </select>
+        </label>
+        <div class="field">
+          <label class="check"><input type="checkbox" id="lhOn"> Satır aralığını değiştir</label>
+          <div class="slider-inline">
+            <input type="range" id="lineHeight" min="1.2" max="2.2" step="0.1" aria-label="Satır aralığı">
+            <output id="lineHeight-out"></output>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Özel tema renkleri</h2>
+      <div class="custom-wrap">
+        <div class="colors">
+          <label class="color">Arka plan <input type="color" id="customBg"></label>
+          <label class="color">Yazı <input type="color" id="customText"></label>
+          <label class="color">Bağlantı <input type="color" id="customLink"></label>
+        </div>
+        <div class="preview" id="preview">
+          <strong>Önizleme</strong>
+          <p>Gece Okuru ile uzun yazıları gözünü yormadan oku. <a href="#" tabindex="-1">Bu bir bağlantı</a> örneğidir.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Zamanlama</h2>
+      <div class="radios" id="schedType">
+        <label><input type="radio" name="sched" value="off"> Kapalı (her zaman uygula)</label>
+        <label><input type="radio" name="sched" value="time"> Saatli</label>
+        <label><input type="radio" name="sched" value="system"> Sistem temasını takip et</label>
+      </div>
+      <div class="times" id="times">
+        <label class="field">Başlangıç <input type="time" id="schedStart"></label>
+        <label class="field">Bitiş <input type="time" id="schedEnd"></label>
+      </div>
+      <p class="hint">Zamanlama, siteye özel mod seçilmemiş sitelerde geçerlidir.</p>
+    </section>
+
+    <section class="card">
+      <h2>Okuma modu varsayılanları</h2>
+      <div class="grid2">
+        <label class="field">Tema
+          <select id="r-theme">
+            <option value="auto">Otomatik</option>
+            <option value="dark">Gece</option>
+            <option value="light">Gündüz</option>
+            <option value="sepia">Sepya</option>
+          </select>
+        </label>
+        <label class="field">Yazı tipi
+          <select id="r-font">
+            <option value="serif">Serif</option>
+            <option value="sans">Sans</option>
+            <option value="mono">Eş aralıklı</option>
+            <option value="dyslexic">Disleksi dostu</option>
+          </select>
+        </label>
+        <label class="field">Yazı boyutu <span class="val" id="r-size-out"></span>
+          <input type="range" id="r-size" min="14" max="32" step="1">
+        </label>
+        <label class="field">Sütun genişliği <span class="val" id="r-width-out"></span>
+          <input type="range" id="r-width" min="480" max="1100" step="20">
+        </label>
+        <label class="field">Satır aralığı <span class="val" id="r-lineHeight-out"></span>
+          <input type="range" id="r-lineHeight" min="1.2" max="2.2" step="0.1">
+        </label>
+        <label class="field">Sesli okuma hızı <span class="val" id="r-ttsRate-out"></span>
+          <input type="range" id="r-ttsRate" min="0.5" max="2" step="0.1">
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Siteye özel ayarlar</h2>
+      <table class="sites">
+        <thead><tr><th>Site</th><th>Mod</th><th>Diğer</th><th></th></tr></thead>
+        <tbody id="siteRows"></tbody>
+      </table>
+      <p class="hint" id="noSites">Henüz siteye özel ayar yok.</p>
+    </section>
+
+    <section class="card">
+      <h2>Yedekleme ve kısayollar</h2>
+      <div class="actions">
+        <button type="button" id="export">Dışa aktar (JSON)</button>
+        <button type="button" id="importBtn">İçe aktar</button>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+        <button type="button" class="danger" id="reset">Varsayılanlara dön</button>
+      </div>
+      <p class="hint">
+        Klavye kısayolları: <kbd>Alt+Shift+D</kbd> tema aç/kapat, <kbd>Alt+Shift+R</kbd> okuma modu, <kbd>Alt+Shift+M</kbd> mod değiştir.
+        Kısayolları <code>chrome://extensions/shortcuts</code> sayfasından değiştirebilirsin.
+        <a href="#" id="shortcuts">Kısayol sayfasını aç</a>
+      </p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Kaydedildi</div>
+
+  <script src="../shared/common.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

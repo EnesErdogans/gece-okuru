@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Gece Okuru</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="../icons/icon32.png" width="24" height="24" alt="">
+      <div>
+        <h1>Gece Okuru</h1>
+        <div class="host" id="host">—</div>
+      </div>
+    </div>
+    <label class="switch" title="Tüm sitelerde aç/kapat">
+      <input type="checkbox" id="enabled">
+      <span class="track"><span class="thumb"></span></span>
+      <span class="sr">Etkin</span>
+    </label>
+  </header>
+
+  <p class="note" id="restricted" hidden>Bu sayfada tema çalışamaz (tarayıcı sayfası). Genel ayarları yine de değiştirebilirsin.</p>
+
+  <section class="card">
+    <div class="row between">
+      <span class="label">Tema</span>
+      <label class="chip" id="siteScopeWrap" title="Değişiklikleri yalnızca bu siteye uygula">
+        <input type="checkbox" id="siteScope"> Sadece bu site
+      </label>
+    </div>
+    <div class="segmented" id="modes" role="radiogroup" aria-label="Tema modu"></div>
+    <div class="status" id="status"></div>
+  </section>
+
+  <button class="reader-btn" id="reader">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 5.5C4 4.7 4.7 4 5.5 4H11v15H5.5A1.5 1.5 0 0 1 4 17.5zM13 4h5.5c.8 0 1.5.7 1.5 1.5v12c0 .8-.7 1.5-1.5 1.5H13z" opacity=".9"/></svg>
+    Okuma modu
+  </button>
+
+  <section class="card sliders" id="sliders"></section>
+
+  <section class="card compact">
+    <label class="check" id="disableWrap">
+      <input type="checkbox" id="siteDisabled"> Bu sitede devre dışı bırak
+    </label>
+    <div class="row between sched">
+      <span class="label">Zamanlama</span>
+      <select id="schedType" aria-label="Zamanlama">
+        <option value="off">Kapalı</option>
+        <option value="time">Saatli</option>
+        <option value="system">Sistem teması</option>
+      </select>
+    </div>
+    <div class="sched-info" id="schedInfo"></div>
+    <a href="#" class="reset" id="resetSite" hidden>Bu siteyi sıfırla</a>
+  </section>
+
+  <footer class="foot">
+    <a href="#" id="openOptions">Tüm ayarlar →</a>
+    <div class="keys"><kbd>Alt+Shift+D</kbd> tema · <kbd>R</kbd> okuma · <kbd>M</kbd> mod</div>
+  </footer>
+
+  <script src="../shared/common.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

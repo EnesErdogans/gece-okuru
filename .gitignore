@@ -1,0 +1,19 @@
+# secrets
+.env
+*.local.json
+ampul_config.json
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+build/
+dist/
+*.spec
+build.log
+# node
+node_modules/
+out/
+# os
+.DS_Store
+Thumbs.db
